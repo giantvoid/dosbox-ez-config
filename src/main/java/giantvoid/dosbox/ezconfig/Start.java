@@ -12,8 +12,9 @@ public class Start {
         try {
             Props.load(new InputStreamReader(Objects.requireNonNull(Start.class.getResourceAsStream("/dosbox-ez-config.ini"))));
         } catch (Throwable throwable) {
+            throwable.printStackTrace();
             JOptionPane.showMessageDialog(null,
-                    String.format("Read properties failed: %s\nPlease report this issue here: %s", throwable.getMessage(), "https://github.com/giantvoid/dosbox-ez-config/issues"),
+                    String.format("Read properties failed: %s\nPlease report this issue here: %s", throwable, "https://github.com/giantvoid/dosbox-ez-config/issues"),
                     "Error reading properties", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
