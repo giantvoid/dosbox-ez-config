@@ -1,16 +1,17 @@
 package giantvoid.dosbox.ezconfig.base;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.net.URL;
+import java.util.*;
 
 public class Props {
     // Some flashy ridiculous defaults which should never be returned
     private static final String UNDEFINED_STRING_VALUE = "!!!UNDEFINED!!!";
     private static final int UNDEFINED_INT_VALUE = -111;
-
+    private static final ImageIcon UNDEFINED_IMAGE = new ImageIcon(Objects.requireNonNull(Props.class.getResource("/images/undefined.png")));
 
     private static final Map<String, Properties> sections = new LinkedHashMap<>();
 
@@ -35,11 +36,31 @@ public class Props {
     }
 
     public static String get(String section, String propertyName) {
-        return sections.containsKey(section) ? sections.get(section).getProperty(propertyName) : UNDEFINED_STRING_VALUE;
+        if (!sections.containsKey(section)) {
+            return UNDEFINED_STRING_VALUE;
+        }
+        String value = sections.get(section).getProperty(propertyName);
+        return value != null ? value : UNDEFINED_STRING_VALUE;
     }
 
     public static int getInt(String section, String propertyName) {
         String stringValue = get(section, propertyName);
         return UNDEFINED_STRING_VALUE.equals(stringValue) ? UNDEFINED_INT_VALUE : Integer.parseInt(stringValue);
+    }
+
+    public static Set<String> getSectionNames() {
+        return sections.keySet();
+    }
+
+    public static ImageIcon getImageIcon(String sectionName, String propertyName) {
+        String imageResourcePath = get(sectionName, propertyName);
+        if (UNDEFINED_STRING_VALUE.equals(imageResourcePath)) {
+            return UNDEFINED_IMAGE;
+        }
+        URL resourceUrl = Props.class.getResource("/images/" + imageResourcePath);
+        if (resourceUrl == null) {
+            return UNDEFINED_IMAGE;
+        }
+        return new ImageIcon(resourceUrl);
     }
 }

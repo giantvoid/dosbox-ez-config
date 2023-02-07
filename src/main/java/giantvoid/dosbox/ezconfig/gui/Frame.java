@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 
 public class Frame extends JFrame {
     private JPanel contentPane;
+    private MachineSelectionPanel machineSelectionPanel;
 
     public Frame() {
         super();
@@ -36,6 +37,9 @@ public class Frame extends JFrame {
     private void initializePanels() {
         contentPane = new JPanel(new BorderLayout());
         setContentPane(contentPane);
+
+        machineSelectionPanel = new MachineSelectionPanel();
+        add(machineSelectionPanel, BorderLayout.NORTH);
     }
 
     private void quit() {
