@@ -1,11 +1,14 @@
 package giantvoid.dosbox.ezconfig.base;
 
+import giantvoid.dosbox.ezconfig.gui.Item;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.io.Reader;
 import java.net.URL;
 import java.util.*;
+import java.util.List;
 
 public class Props {
     // Some flashy ridiculous defaults which should never be returned
@@ -17,7 +20,6 @@ public class Props {
 
     // The section-based parsing implementation is based on: https://stackoverflow.com/a/41084504/14716574
     public static void load(Reader reader) throws IOException {
-        sections.clear();
         new Properties() {
             private Properties sectionProperties = new Properties();
 
@@ -52,8 +54,8 @@ public class Props {
         return sections.keySet();
     }
 
-    public static ImageIcon getImageIcon(String sectionName, String propertyName) {
-        String imageResourcePath = get(sectionName, propertyName);
+    public static ImageIcon getImageIcon(String propertyName) {
+        String imageResourcePath = get("images", propertyName);
         if (UNDEFINED_STRING_VALUE.equals(imageResourcePath)) {
             return UNDEFINED_IMAGE;
         }
@@ -62,5 +64,10 @@ public class Props {
             return UNDEFINED_IMAGE;
         }
         return new ImageIcon(resourceUrl);
+    }
+
+    public static List<Item> getItems(String listName) {
+        return null;
+        // TODO
     }
 }

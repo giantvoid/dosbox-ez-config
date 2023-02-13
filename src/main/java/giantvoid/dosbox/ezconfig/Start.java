@@ -11,6 +11,7 @@ public class Start {
     public static void main(String[] args) {
         try {
             Props.load(new InputStreamReader(Objects.requireNonNull(Start.class.getResourceAsStream("/dosbox-ez-config.ini"))));
+            Props.load(new InputStreamReader(Objects.requireNonNull(Start.class.getResourceAsStream("/dosbox_options.ini"))));
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             JOptionPane.showMessageDialog(null,
