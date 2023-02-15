@@ -2,6 +2,7 @@ package giantvoid.dosbox.ezconfig;
 
 import giantvoid.dosbox.ezconfig.base.Props;
 import giantvoid.dosbox.ezconfig.gui.Frame;
+import giantvoid.dosbox.ezconfig.gui.GuiUtils;
 
 import javax.swing.*;
 import java.io.InputStreamReader;

@@ -55,7 +55,11 @@ public class Props {
     }
 
     public static ImageIcon getImageIcon(String propertyName) {
-        String imageResourcePath = get("images", propertyName);
+        return getImageIcon("images", propertyName);
+    }
+
+    public static ImageIcon getImageIcon(String section, String propertyName) {
+        String imageResourcePath = get(section, propertyName);
         if (UNDEFINED_STRING_VALUE.equals(imageResourcePath)) {
             return UNDEFINED_IMAGE;
         }

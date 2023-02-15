@@ -22,16 +22,16 @@ public class MachinePropertiesPanel extends JPanel {
         add(contentPanel, BorderLayout.NORTH);
 
         comboBoxCpu = new JComboBox<>(new Item[]{new Item("80386", "386")});
-        contentPanel.add(GuiUtils.createSinglePropertyPanel(Props.getImageIcon("cpu"), comboBoxCpu));
+        contentPanel.add(GuiUtils.createSinglePropertyPanel("cpu", comboBoxCpu));
 
         comboBoxDisplay = new JComboBox<>(new Item[]{new Item("VGA", "vgaonly")});
-        contentPanel.add(GuiUtils.createSinglePropertyPanel(Props.getImageIcon("display"), comboBoxDisplay));
+        contentPanel.add(GuiUtils.createSinglePropertyPanel("display", comboBoxDisplay));
 
         comboBoxMemory = new JComboBox<>(new Item[]{new Item("4MB", "4")});
-        contentPanel.add(GuiUtils.createSinglePropertyPanel(Props.getImageIcon("memory"), comboBoxMemory));
+        contentPanel.add(GuiUtils.createSinglePropertyPanel("memory", comboBoxMemory));
 
         checkBoxFullscreen = new JCheckBox("Fullscreen");
         checkBoxFullscreen.setMargin(new Insets(0, 0, 0, 0));
-        contentPanel.add(GuiUtils.createSinglePropertyPanel(Props.getImageIcon("empty"), checkBoxFullscreen));
+        contentPanel.add(GuiUtils.createSinglePropertyPanel("empty", checkBoxFullscreen));
     }
 }
